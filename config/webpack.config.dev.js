@@ -14,8 +14,9 @@ module.exports = {
   },
   devtool: "cheap-module-eval-source-map",
   devServer: {
-    hot: true,
+    hotOnly: true,
     progress: true,
+    port: 8081,
   },
   optimization: {
     runtimeChunk: "single",
@@ -43,6 +44,7 @@ module.exports = {
     new webpack.DefinePlugin({
       "process.env": {
         DEVELOPMENT: true,
+        NODE_ENV: "development",
       },
     }),
     new HtmlWebPackPlugin({
