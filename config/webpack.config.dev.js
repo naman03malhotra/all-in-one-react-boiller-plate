@@ -9,7 +9,7 @@ module.exports = {
   entry: [path.resolve(__dirname, "../src/index.js")],
   output: {
     path: path.resolve(__dirname, "../dist"),
-    filename: "bundle.js",
+    filename: "[name].js",
     publicPath: "/",
   },
   devtool: "cheap-module-eval-source-map",
@@ -20,6 +20,9 @@ module.exports = {
   },
   optimization: {
     runtimeChunk: "single",
+    splitChunks: {
+      chunks: "all",
+    },
   },
   module: {
     rules: [
@@ -44,7 +47,7 @@ module.exports = {
     new webpack.DefinePlugin({
       "process.env": {
         DEVELOPMENT: true,
-        NODE_ENV: "development",
+        NODE_ENV: JSON.stringify("development"),
       },
     }),
     new HtmlWebPackPlugin({
