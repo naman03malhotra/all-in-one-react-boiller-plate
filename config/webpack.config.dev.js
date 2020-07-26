@@ -4,8 +4,10 @@ const path = require("path");
 const BundleAnalyzerPlugin = require("webpack-bundle-analyzer")
   .BundleAnalyzerPlugin;
 
-module.exports = {
-  mode: "production",
+const clientConfig = {
+  mode: "development",
+  name: "client",
+  target: "web",
   entry: [path.resolve(__dirname, "../src/index.js")],
   output: {
     path: path.resolve(__dirname, "../dist"),
@@ -50,11 +52,13 @@ module.exports = {
         NODE_ENV: JSON.stringify("development"),
       },
     }),
-    new HtmlWebPackPlugin({
-      template: path.resolve(__dirname, "../public/index.html"),
-      filename: "index.html",
-    }),
+    // new HtmlWebPackPlugin({
+    //   template: path.resolve(__dirname, "../public/index.html"),
+    //   filename: "index.html",
+    // }),
     // new BundleAnalyzerPlugin(),
   ],
-  cache: true,
+  // cache: true,
 };
+
+module.exports = [clientConfig];
