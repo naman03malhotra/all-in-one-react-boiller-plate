@@ -5,10 +5,12 @@
   "license": "MIT",
   "scripts": {
     "launch": "yarn dev:node",
+    "launch:prod": "yarn build:prod && yarn run:prod",
     "webpack-dev-server": "webpack-dev-server",
     "dev": "NODE_ENV=development webpack-dev-server --config config/webpack.config.dev.js",
     "dev:node": "rm -rf dist && NODE_ENV=development webpack --config config/webpack.config.dev.js && NODE_ENV=development webpack --config config/webpack.config.node.js && NODE_ENV=development node ./dist/server.js",
-    "prod": "webpack --config config/webpack.config.prod.js"
+    "build:prod": "rm -rf dist && NODE_ENV=production webpack --config config/webpack.config.prod.js && NODE_ENV=production webpack --config config/webpack.config.node.js",
+    "run:prod": "NODE_ENV=production node ./dist/server.js"
   },
   "dependencies": {
     "react": "^16.13.1",

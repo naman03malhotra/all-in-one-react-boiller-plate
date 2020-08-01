@@ -15,8 +15,8 @@ const Html = ({ children, initialState, scripts }) => (
           }}
         />
       )}
-      {scripts.map((script, index) => (
-        <script key={index} src={script} />
+      {Object.keys(scripts).map((script, index) => (
+        <script key={index} src={scripts[script]} />
       ))}
     </body>
   </html>

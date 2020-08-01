@@ -15,13 +15,21 @@ import appReducer from "../reducers/app_reducer";
 const key = fs.readFileSync("./key.pem");
 const cert = fs.readFileSync("./cert.pem");
 
+// console.log("dr", __dirname);
+const manifestPath = path.join(
+  __dirname,
+  "..",
+  "webpack_manifest",
+  "manifest.json"
+);
+
+const runtimeContent = JSON.parse(fs.readFileSync(manifestPath, "utf-8"));
+
 const app = express();
 
 app.use(express.static(path.join(__dirname)));
 
 app.get("*", async (req, res) => {
-  const scripts = ["vendors~main.js", "main.js", "runtime.js"];
-
   const initialState = { initialText: "rendered on the server" };
   const context = {};
 
@@ -36,7 +44,11 @@ app.get("*", async (req, res) => {
   );
 
   const html = ReactDOMServer.renderToStaticMarkup(
-    <Html children={appMarkup} scripts={scripts} initialState={initialState} />
+    <Html
+      children={appMarkup}
+      scripts={runtimeContent}
+      initialState={initialState}
+    />
   );
 
   res.send(`<!doctype html>${html}`);
