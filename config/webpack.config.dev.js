@@ -8,7 +8,7 @@ const clientConfig = {
   mode: "development",
   name: "client",
   target: "web",
-  entry: [path.resolve(__dirname, "../src/index.js")],
+  entry: [path.resolve(__dirname, "../src/client/client.js")],
   output: {
     path: path.resolve(__dirname, "../dist"),
     filename: "[name].js",
