@@ -1,42 +1,28 @@
 import React from "react";
-import { bindActionCreators, compose } from "redux";
-import { connect } from "react-redux";
 
-import appActions from "../actions/app_actions";
+import { Route, Link, Switch } from "react-router-dom";
 
-import "./app.scss";
+import Landing from "./landing";
+import About from "./about";
 
-const App = ({ initialText, appActions }) => {
-  return (
-    <div>
-      <p>{initialText}</p>
-      <button onClick={() => appActions.setTextInBrowser()}>
-        change text!
-      </button>
-    </div>
-  );
-};
+const App = () => (
+  <div>
+    <ul>
+      <li>
+        <Link to="/">Home</Link>
+      </li>
+      <li>
+        <Link to="/about">About</Link>
+      </li>
+    </ul>
 
-const mapStateToProps = (state, props) => {
-  return {
-    initialText: state.initialText,
-  };
-};
+    <hr />
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    // appActions: bindActionCreators(appActions, dispatch),
-    appActions: {
-      setTextInBrowser: () => {
-        dispatch({
-          type: "CHANGE_TEXT",
-          data: {
-            initialText: "Client",
-          },
-        });
-      },
-    },
-  };
-};
+    <Switch>
+      <Route path="/about" component={About} />
+      <Route path="/" component={Landing} />
+    </Switch>
+  </div>
+);
 
-export default compose(connect(mapStateToProps, mapDispatchToProps))(App);
+export default App;

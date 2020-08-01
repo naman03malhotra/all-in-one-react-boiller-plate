@@ -6,6 +6,7 @@ import http2 from "http2";
 import path from "path";
 import { createStore } from "redux";
 import { Provider } from "react-redux";
+import { StaticRouter } from "react-router";
 
 import Html from "./html";
 import App from "../components/app";
@@ -22,13 +23,16 @@ app.get("*", async (req, res) => {
   const scripts = ["vendors~main.js", "main.js", "runtime.js"];
 
   const initialState = { initialText: "rendered on the server" };
+  const context = {};
 
   const store = createStore(appReducer, initialState);
 
   const appMarkup = ReactDOMServer.renderToString(
-    <Provider store={store}>
-      <App />
-    </Provider>
+    <StaticRouter location={req.url} context={context}>
+      <Provider store={store}>
+        <App />
+      </Provider>
+    </StaticRouter>
   );
 
   const html = ReactDOMServer.renderToStaticMarkup(
