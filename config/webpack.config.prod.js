@@ -2,6 +2,9 @@ const webpack = require("webpack");
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 const path = require("path");
 const ManifestPlugin = require("webpack-manifest-plugin");
+const CompressionPlugin = require("compression-webpack-plugin");
+const BundleAnalyzerPlugin = require("webpack-bundle-analyzer")
+  .BundleAnalyzerPlugin;
 
 module.exports = {
   mode: "production",
@@ -58,8 +61,9 @@ module.exports = {
   },
   plugins: [
     new ManifestPlugin({
-      fileName: path.join("..", "webpack_manifest", "manifest.json"),
+      fileName: path.join("..", "wp_manifest", "manifest.json"),
     }),
+    // new CompressionPlugin(), // this will be handled by CDN
     new webpack.HashedModuleIdsPlugin(),
     new webpack.DefinePlugin({
       "process.env": {
@@ -67,9 +71,6 @@ module.exports = {
         NODE_ENV: JSON.stringify("production"),
       },
     }),
-    // new HtmlWebPackPlugin({
-    //   template: path.resolve(__dirname, "public/index.html"),
-    //   filename: "index.html",
-    // }),
+    // new BundleAnalyzerPlugin(),
   ],
 };

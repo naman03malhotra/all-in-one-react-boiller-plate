@@ -4,7 +4,9 @@
 ._*
 
 node_modules
+webpack_manifest
 dist
 coverage
 yarn-error.log
 *.pem
+wp_manifest

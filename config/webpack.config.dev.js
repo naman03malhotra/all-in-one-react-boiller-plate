@@ -1,8 +1,6 @@
 const webpack = require("webpack");
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 const path = require("path");
-const BundleAnalyzerPlugin = require("webpack-bundle-analyzer")
-  .BundleAnalyzerPlugin;
 
 const clientConfig = {
   mode: "development",
@@ -55,7 +53,6 @@ const clientConfig = {
     //   template: path.resolve(__dirname, "../public/index.html"),
     //   filename: "index.html",
     // }),
-    // new BundleAnalyzerPlugin(),
   ],
   // cache: true,
 };
