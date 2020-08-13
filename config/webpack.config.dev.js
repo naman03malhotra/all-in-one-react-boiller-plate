@@ -1,4 +1,5 @@
 const webpack = require("webpack");
+const ManifestPlugin = require("webpack-manifest-plugin");
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 const path = require("path");
 
@@ -9,19 +10,26 @@ const clientConfig = {
   output: {
     path: path.resolve(__dirname, "../dist"),
     filename: "[name].js",
-    publicPath: "/",
+    publicPath: "http://localhost:9000/public/assets/",
   },
   devtool: "cheap-module-eval-source-map",
   devServer: {
     hotOnly: true,
     progress: true,
-    port: 8081,
+    compress: true,
+    port: 9000,
+    headers: {
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH, OPTIONS",
+      "Access-Control-Allow-Headers":
+        "X-Requested-With, content-type, Authorization",
+    },
   },
   optimization: {
     runtimeChunk: "single",
-    splitChunks: {
-      chunks: "all",
-    },
+    // splitChunks: {
+    //   chunks: "all",
+    // },
   },
   module: {
     rules: [
@@ -42,6 +50,10 @@ const clientConfig = {
     ],
   },
   plugins: [
+    // new ManifestPlugin({
+    //   fileName: path.join("..", "wp_dev_manifest", "manifest.json"),
+    //   writeToFileEmit: true,
+    // }),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.DefinePlugin({
       "process.env": {

@@ -9,9 +9,12 @@ import "./landing.scss";
 const Landing = ({ initialText, appActions }) => {
   return (
     <div>
-      <p>{initialText}</p>
-      <button onClick={() => appActions.setTextInBrowser()}>
-        change text!
+      <p className="app-container">{initialText}</p>
+      <button
+        className="button-x"
+        onClick={() => appActions.setTextInBrowser()}
+      >
+        dup textx!
       </button>
     </div>
   );

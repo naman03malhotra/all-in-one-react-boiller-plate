@@ -5,6 +5,7 @@ const ManifestPlugin = require("webpack-manifest-plugin");
 const CompressionPlugin = require("compression-webpack-plugin");
 const BundleAnalyzerPlugin = require("webpack-bundle-analyzer")
   .BundleAnalyzerPlugin;
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
   mode: "production",
@@ -14,7 +15,8 @@ module.exports = {
   },
   output: {
     path: path.resolve(__dirname, "../dist"),
-    filename: "[name].[chunkhash].js",
+    filename: "[name]-[contenthash:10].js",
+    chunkFilename: "[name]-[contenthash:10].js",
     publicPath: "/",
   },
   module: {
@@ -27,12 +29,20 @@ module.exports = {
       {
         test: /\.scss$/,
         exclude: /node_modules/,
-        use: ["style-loader", "raw-loader", "sass-loader"],
+        use: [
+          MiniCssExtractPlugin.loader,
+          { loader: "css-loader", options: { url: false } },
+          "sass-loader",
+        ],
       },
       {
         test: /\.(png|j?g|svg|gif)?$/,
         exclude: /node_modules/,
         use: "file-loader",
+      },
+      {
+        test: /wp-manifest/,
+        use: "ignore-loader",
       },
     ],
   },
@@ -45,6 +55,10 @@ module.exports = {
       cacheGroups: {
         vendor: {
           test: /[\\/]node_modules[\\/]/,
+          priority: 1,
+          minSize: 100000,
+          enforce: true,
+          reuseExistingChunk: true,
           name(module) {
             // get the name. E.g. node_modules/packageName/not/this/part.js
             // or node_modules/packageName
@@ -55,6 +69,14 @@ module.exports = {
             // npm package names are URL-safe, but some servers don't like @ symbols
             return `npm.${packageName.replace("@", "")}`;
           },
+        },
+        commons: {
+          test: /[\\/]src[\\/]/,
+          minSize: 10000,
+          minChunks: 2,
+          priority: 0,
+          enforce: true,
+          reuseExistingChunk: true,
         },
       },
     },
@@ -70,6 +92,10 @@ module.exports = {
         PRODUCTION: true,
         NODE_ENV: JSON.stringify("production"),
       },
+    }),
+    new MiniCssExtractPlugin({
+      filename: "[name]-[contenthash:8].css",
+      chunkFilename: "[name]-[contenthash:8].css",
     }),
     // new BundleAnalyzerPlugin(),
   ],

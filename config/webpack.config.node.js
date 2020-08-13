@@ -1,5 +1,7 @@
+const webpack = require("webpack");
 const path = require("path");
 const nodeExternals = require("webpack-node-externals");
+const HappyPack = require("happypack");
 
 const serverConfig = {
   mode: "production",
@@ -12,13 +14,25 @@ const serverConfig = {
   output: {
     path: path.resolve(__dirname, "../dist"),
     filename: "[name].js",
+    libraryTarget: "commonjs2",
   },
+  plugins: [
+    new webpack.optimize.LimitChunkCountPlugin({
+      maxChunks: 1,
+    }),
+    new HappyPack({
+      id: "js",
+      loaders: ["babel-loader"],
+    }),
+  ],
   module: {
     rules: [
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        use: "babel-loader",
+        use: {
+          loader: "happypack/loader?id=js",
+        },
       },
       {
         test: /\.scss|.css$/,
