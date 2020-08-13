@@ -2,6 +2,7 @@ const webpack = require("webpack");
 const ManifestPlugin = require("webpack-manifest-plugin");
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 const path = require("path");
+const fs = require("fs");
 
 const clientConfig = {
   mode: "development",
@@ -10,11 +11,14 @@ const clientConfig = {
   output: {
     path: path.resolve(__dirname, "../dist"),
     filename: "[name].js",
-    publicPath: "http://localhost:9000/public/assets/",
+    publicPath: "https://localhost:9000/public/assets/",
   },
   devtool: "cheap-module-eval-source-map",
   devServer: {
     hotOnly: true,
+    https: true,
+    key: fs.readFileSync("./key.pem"),
+    cert: fs.readFileSync("./cert.pem"),
     progress: true,
     compress: true,
     port: 9000,

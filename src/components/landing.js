@@ -14,7 +14,7 @@ const Landing = ({ initialText, appActions }) => {
         className="button-x"
         onClick={() => appActions.setTextInBrowser()}
       >
-        dup textx!
+        dup textxxcxc!
       </button>
     </div>
   );

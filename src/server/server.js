@@ -5,7 +5,8 @@ import fs from "fs";
 import compress from "compression";
 import url from "url";
 import proxy from "proxy-middleware";
-import http2 from "http2";
+// implement http2
+import https from "https";
 import path from "path";
 import { createStore } from "redux";
 import { Provider } from "react-redux";
@@ -48,9 +49,10 @@ function server() {
   app.use(compress());
 
   if (isDevelopment()) {
+    process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
     app.use(
       "/assets/",
-      proxy(url.parse("http://localhost:9000/public/assets/"))
+      proxy(url.parse("https://localhost:9000/public/assets/"))
     );
   }
 
@@ -79,13 +81,13 @@ function server() {
     res.send(`<!doctype html>${html}`);
   });
 
-  // http2
-  //   .createSecureServer({ key: key, cert: cert }, app)
-  //   .listen(3040, () => console.log("Express running on port 3040"));
+  const nodeServer = https
+    .createServer({ key: key, cert: cert }, app)
+    .listen(3040, () => console.log("Express running on port 3040"));
 
-  const nodeServer = app.listen(3040, () =>
-    console.log("Express running on port 3040")
-  );
+  // const nodeServer = app.listen(3040, () =>
+  //   console.log("Express running on port 3040")
+  // );
 
   return nodeServer;
 }
