@@ -2,8 +2,6 @@
 
 const NODE_ENV = process.env.NODE_ENV;
 
-const fs = require("fs");
-
 const isDevelopment = NODE_ENV === "development" || !NODE_ENV;
 
 if (isDevelopment) {
