@@ -6,7 +6,7 @@
   "scripts": {
     "start": "yarn kill && yarn start:devnodeserver & yarn start:devserver",
     "start:devserver": "NODE_ENV=development webpack-dev-server --config config/webpack.config.dev.js",
-    "start:devnodeserver": "NODE_ENV=development node app.js",
+    "start:devnodeserver": "NODE_ENV=development nodemon --watch ./src app.js",
     "start:prod": "yarn build:prodonlocal && yarn run:prodonlocal",
     "build:prodonlocal": "rm -rf dist && NODE_ENV=production webpack --config config/webpack.config.prod.js && NODE_ENV=production webpack --config config/webpack.config.node.js",
     "run:prodonlocal": "NODE_ENV=production node app.js",
@@ -39,6 +39,7 @@
     "kill-port": "^1.6.1",
     "mini-css-extract-plugin": "^0.10.0",
     "node-sass": "^4.14.1",
+    "nodemon": "^2.0.4",
     "path": "^0.12.7",
     "raw-loader": "^4.0.1",
     "sass-loader": "^9.0.2",

@@ -24,7 +24,7 @@ const Html = ({ children, initialState, assets }) => {
     <html lang="en">
       <head>
         <meta charSet="UTF-8" />
-        <title>Server Side</title>
+        <title>Server Sidee</title>
         {cssBucket.map((script, index) => {
           return (
             <link rel="stylesheet" type="text/css" key={index} href={script} />
