@@ -25,6 +25,7 @@ const Html = ({ children, initialState, assets }) => {
       <head>
         <meta charSet="UTF-8" />
         <title>Server Sidee</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         {cssBucket.map((script, index) => {
           return (
             <link rel="stylesheet" type="text/css" key={index} href={script} />
