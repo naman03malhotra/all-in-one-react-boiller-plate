@@ -1,0 +1,15 @@
+@import "../ui_kit/theme.scss";
+
+body {
+  height: 100vh;
+  background-color: grey;
+}
+
+.button-xx {
+  color: $color-red;
+}
+
+.appcontainer {
+  color: white;
+  font-weight: bold;
+}

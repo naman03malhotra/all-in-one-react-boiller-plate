@@ -4,17 +4,20 @@ import { connect } from "react-redux";
 
 import appActions from "../actions/app_actions";
 
-import "./landing.scss";
+// import "./landing.scss";
+import styles from "./landing.module.scss";
+
+console.log(styles);
 
 const Landing = ({ initialText, appActions }) => {
   return (
     <div>
-      <p className="app-container">{initialText}</p>
+      <p className={styles.appcontainer}>{initialText}</p>
       <button
-        className="button-x"
+        className={styles.buttonx}
         onClick={() => appActions.setTextInBrowser()}
       >
-        dup textx!
+        dup textsss!
       </button>
     </div>
   );

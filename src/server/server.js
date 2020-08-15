@@ -31,6 +31,7 @@ if (isProduction()) {
   runtimeContent = {
     "main.js": "/assets/main.js",
     "runtime.js": "/assets/runtime.js",
+    "main.css": "/assets/main.css",
   };
 }
 
