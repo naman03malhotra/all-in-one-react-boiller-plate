@@ -4,12 +4,12 @@ const HtmlWebPackPlugin = require("html-webpack-plugin");
 const path = require("path");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
-console.log("w", __dirname);
+console.log("w", path.resolve(__dirname, ".."));
 
 const clientConfig = {
   mode: "development",
   target: "web",
-  context: path.resolve(__dirname),
+  context: path.resolve(__dirname, ".."),
   entry: [path.resolve(__dirname, "../src/client/client.js")],
   output: {
     path: path.resolve(__dirname, "../dist"),
@@ -52,8 +52,9 @@ const clientConfig = {
             options: {
               modules: {
                 // exportLocalsConvention: "camelCaseOnly",
-                // mode: "local",
-                localIdentName: "[name]__[local]--[hash:base64:8]",
+                mode: "local",
+                localIdentContext: path.resolve(__dirname, ".."),
+                localIdentName: "[name]__[local]__[hash:base64:8]",
               },
             },
           },

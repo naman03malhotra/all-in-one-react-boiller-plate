@@ -30,7 +30,7 @@ function ignoreRequire(extension) {
 }
 
 // ignore scss, css requires
-// ignoreRequire(".scss");
+ignoreRequire(".scss");
 ignoreRequire(".css");
 
 startServer();
