@@ -1,0 +1,36 @@
+@import "../ui-kit/theme.scss";
+
+.about-container {
+  .card {
+    background-color: $ele-1;
+    width: auto;
+    margin: 10px;
+    border-radius: 2px;
+  }
+
+  .ele2 {
+    background-color: $ele-2;
+  }
+
+  .ele3 {
+    background-color: $ele-3;
+  }
+
+  .ele4 {
+    background-color: $ele-4;
+  }
+
+  .content-wrapper {
+    padding: 10px;
+  }
+
+  .some-text {
+    color: $color-text-he;
+  }
+  .some-text-1 {
+    color: $color-text-me;
+  }
+  .some-text-2 {
+    color: $color-text-de;
+  }
+}

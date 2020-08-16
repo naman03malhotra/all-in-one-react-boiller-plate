@@ -1,6 +1,9 @@
+@import "../ui-kit/theme.scss";
+
 body {
   height: 100vh;
-  background-color: grey;
+  background-color: $color-bg;
+  margin: 0;
 }
 
 .app-container {

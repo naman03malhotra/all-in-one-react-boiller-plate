@@ -1,0 +1,16 @@
+$color-bg: #121212;
+$color-white: #ffffff;
+
+//evelvations
+$ele-0: $color-bg;
+$ele-1: lighten($color-bg, 5%);
+$ele-2: lighten($color-bg, 9%);
+$ele-3: lighten($color-bg, 12%);
+$ele-4: lighten($color-bg, 16%);
+
+// high emphesis
+$color-text-he: darken($color-white, 13%);
+// medium emphesis
+$color-text-me: darken($color-white, 40%);
+// disabled text
+$color-text-de: darken($color-white, 60%);
