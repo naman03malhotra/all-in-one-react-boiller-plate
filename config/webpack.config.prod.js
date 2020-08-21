@@ -11,7 +11,7 @@ module.exports = {
   mode: "production",
   target: "web",
   entry: {
-    main: "./src/client/client.js",
+    main: "./source/client/client.js",
   },
   output: {
     path: path.resolve(__dirname, "../dist"),

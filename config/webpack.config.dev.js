@@ -6,7 +6,7 @@ const path = require("path");
 const clientConfig = {
   mode: "development",
   target: "web",
-  entry: [path.resolve(__dirname, "../src/client/client.js")],
+  entry: [path.resolve(__dirname, "../source/client/client.js")],
   output: {
     path: path.resolve(__dirname, "../dist"),
     filename: "[name].js",

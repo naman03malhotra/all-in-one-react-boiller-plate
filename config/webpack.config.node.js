@@ -9,7 +9,7 @@ const serverConfig = {
   target: "node",
   externals: [nodeExternals()],
   entry: {
-    server: [path.resolve(__dirname, "../src/server/server.js")],
+    server: [path.resolve(__dirname, "../source/server/server.js")],
   },
   output: {
     path: path.resolve(__dirname, "../dist"),

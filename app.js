@@ -13,7 +13,7 @@ if (isDevelopment) {
 }
 
 const serverPath = isDevelopment
-  ? "./src/server/server.js"
+  ? "./source/server/server.js"
   : "./dist/server.js";
 
 function startServer() {

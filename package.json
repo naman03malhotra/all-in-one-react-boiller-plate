@@ -6,7 +6,7 @@
   "scripts": {
     "start": "yarn kill && yarn start:devnodeserver & yarn start:devserver",
     "start:devserver": "NODE_ENV=development webpack-dev-server --config config/webpack.config.dev.js",
-    "start:devnodeserver": "NODE_ENV=development nodemon --watch ./src app.js",
+    "start:devnodeserver": "NODE_ENV=development nodemon --watch ./source -d 200ms -V app.js",
     "start:prod": "yarn build:prodonlocal && yarn run:prodonlocal",
     "build:prodonlocal": "rm -rf dist && NODE_ENV=production webpack --config config/webpack.config.prod.js && NODE_ENV=production webpack --config config/webpack.config.node.js",
     "run:prodonlocal": "NODE_ENV=production node app.js",

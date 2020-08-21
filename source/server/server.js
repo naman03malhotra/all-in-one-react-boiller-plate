@@ -55,7 +55,16 @@ function server() {
   }
 
   app.get("*", async (req, res) => {
-    const initialState = { initialText: "rendered on the server" };
+    const { query } = req;
+    const ANDROID_ENV = query.android === "true";
+
+    const initialState = {
+      initialText: "rendered on the server",
+      ANDROID: {
+        ANDROID_REFRESH: false,
+        ANDROID_ENV,
+      },
+    };
     const context = {};
 
     const store = createStore(appReducer, initialState);

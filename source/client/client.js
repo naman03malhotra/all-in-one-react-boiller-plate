@@ -7,7 +7,15 @@ import { BrowserRouter } from "react-router-dom";
 import App from "../components/app";
 import appReducer from "../reducers/app_reducer";
 
-const store = createStore(appReducer, { ...window.APP_STATE });
+const store = createStore(appReducer, {
+  ...window.APP_STATE,
+  ANDROID: {
+    ...window.APP_STATE.ANDROID,
+    ANDROID_TRIGGERS: window.ANDROID_TRIGGERS,
+  },
+});
+
+window.reactStore = store;
 
 ReactDOM.hydrate(
   <BrowserRouter>
