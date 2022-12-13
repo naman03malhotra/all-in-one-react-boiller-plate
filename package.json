@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "compression": "^1.7.4",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "proxy-middleware": "^0.15.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
